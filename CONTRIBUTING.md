@@ -41,7 +41,7 @@ Set `C64_READY_DIR=/path/to/c64-ready` to test against an unreleased c64-ready c
 `plugins/c64/skills/c64-ready/reference/cli.md` is a copy of
 [`docs/AGENT_CLI.md`](https://github.com/hayesmaker/c64-ready/blob/master/docs/AGENT_CLI.md).
 When the CLI changes, copy it across, update the SKILL.md recipes, and raise the
-minimum version in `scripts/c64-agent.sh` (`c64-ready@^x.y.z`) if the skill depends on
+pinned version in `scripts/c64-agent.sh` (`c64-ready@x.y.z`, exact: the plugin directory rejects ranges) if the skill depends on
 new flags.
 
 ## Releasing

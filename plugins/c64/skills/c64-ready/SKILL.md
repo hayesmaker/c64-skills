@@ -17,7 +17,7 @@ the report or screenshot, and fix what you find.
 ## Running it
 
 Use the wrapper in this skill's directory. It finds a local clone (`$C64_READY_DIR`), a
-global or project install, and falls back to `npx -p c64-ready@^3.2.0`:
+global or project install, and falls back to `npx -p c64-ready@3.3.0`:
 
 ```bash
 <skill-dir>/scripts/c64-agent.sh build/main.prg --frames 100 --screen --screenshot /tmp/shot.png
