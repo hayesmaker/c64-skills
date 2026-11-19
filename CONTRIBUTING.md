@@ -3,7 +3,7 @@
 ## Layout
 
 ```
-.claude-plugin/marketplace.json      marketplace listing (one plugin: c64)
+.claude-plugin/marketplace.json      marketplace listing (one plugin: c64-skills)
 plugins/c64/
   .claude-plugin/plugin.json         plugin manifest
   .claude-plugin/icon.png            plugin directory icon (generated, see Brand)
@@ -21,7 +21,7 @@ Point Claude Code at your working copy instead of GitHub:
 
 ```
 /plugin marketplace add /path/to/c64-skills
-/plugin install c64@c64-skills
+/plugin install c64-skills@c64-skills
 ```
 
 The plugin ships no scripts: the plugin directory refuses executable files from
@@ -56,7 +56,7 @@ blocks version ranges in `npx` commands), so raise every pin together:
    update when this changes.
 2. Validate: `claude plugin validate . && claude plugin validate plugins/c64 --profile directory`
 3. Commit and push, then run `claude plugin tag plugins/c64 --push`. It checks that the
-   two versions agree, creates a `c64--v<version>` tag and pushes it (`--dry-run`
+   two versions agree, creates a `c64-skills--v<version>` tag and pushes it (`--dry-run`
    previews this first).
 
 ## Brand

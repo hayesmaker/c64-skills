@@ -16,11 +16,11 @@ itself, instead of handing you something that "should work".
 
 ```
 /plugin marketplace add hayesmaker/c64-skills
-/plugin install c64@c64-skills
+/plugin install c64-skills@c64-skills
 ```
 
 The first line registers this repository as a plugin source, and the second installs
-its `c64` plugin. If the skills don't show up straight away, restart Claude Code.
+its `c64-skills` plugin. If the skills don't show up straight away, restart Claude Code.
 
 **2. Install the tools the skills use:**
 
@@ -75,10 +75,13 @@ usually show you screenshots.
 ## Updating and removing
 
 ```
-/plugin marketplace update c64-skills   # fetch the latest version of the listing
-/plugin update c64@c64-skills           # update the installed plugin
-/plugin uninstall c64@c64-skills
+/plugin marketplace update c64-skills    # fetch the latest version of the listing
+/plugin update c64-skills@c64-skills    # update the installed plugin
+/plugin uninstall c64-skills@c64-skills
 ```
+
+If you installed an early version under its old name, `c64`, run
+`/plugin uninstall c64@c64-skills` and then install `c64-skills@c64-skills`.
 
 ## Other agents, or without the plugin system
 

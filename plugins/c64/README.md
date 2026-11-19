@@ -1,4 +1,4 @@
-# c64: Commodore 64 development skills
+# c64-skills: Commodore 64 development skills
 
 ![cbm-buddy, the c64-skills mascot](assets/banner.png)
 
@@ -47,7 +47,10 @@ ships no scripts or programs. The skills tell Claude to run these commands:
   `localhost` that serves the browser player and your built file, then opens it in
   your browser.
 
-The plugin sends no data anywhere, and the emulator runs entirely on your machine.
+The only environment variables the skills read are `KICKASS_JAR` and `C64_READY_DIR`.
+Both are optional file paths (to `KickAss.jar` and to a local c64-ready clone), not
+credentials. The plugin sends no data anywhere, and the emulator runs entirely on your
+machine.
 
 ## Example prompts
 
