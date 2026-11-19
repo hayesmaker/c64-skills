@@ -1,0 +1,21 @@
+{
+  "name": "c64-skills",
+  "owner": {
+    "name": "hayesmaker",
+    "url": "https://github.com/hayesmaker"
+  },
+  "metadata": {
+    "description": "Skills for AI-assisted Commodore 64 development: build with KickAssembler, then run, screenshot and debug with the c64-ready headless emulator.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "c64",
+      "source": "./plugins/c64",
+      "description": "C64 development skills: c64-ready (run, screenshot, debug headlessly) and c64-asm (KickAssembler build loop and hardware reference).",
+      "version": "0.1.0",
+      "category": "development",
+      "keywords": ["c64", "commodore-64", "6502", "assembly", "kickassembler", "emulator", "retro", "gamedev"]
+    }
+  ]
+}

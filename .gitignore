@@ -1,0 +1,6 @@
+build/
+node_modules/
+*.prg
+*.sym
+*.vs
+!plugins/**/templates/*
