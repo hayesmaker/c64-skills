@@ -1,8 +1,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // main.asm — KickAssembler starter: raster IRQ, frame-locked game loop,
 // joystick-driven sprite. Build and run:
-//   kickass.sh src/main.asm             → build/main.prg + build/main.sym
-//   c64-agent.sh build/main.prg --symbols build/main.sym --frames 100 --screenshot shot.png
+//   java -jar "$KICKASS_JAR" src/main.asm -o "$PWD/build/main.prg" -odir "$PWD/build" -symbolfile -vicesymbols
+//   npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --symbols build/main.sym --frames 100 --screenshot shot.png
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── constants ────────────────────────────────────────────────────────────────

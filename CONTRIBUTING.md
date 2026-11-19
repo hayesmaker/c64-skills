@@ -8,8 +8,9 @@ plugins/c64/
   .claude-plugin/plugin.json         plugin manifest
   .claude-plugin/icon.png            plugin directory icon (generated, see Brand)
   skills/
-    c64-ready/  SKILL.md  scripts/c64-agent.sh  reference/cli.md
-    c64-asm/    SKILL.md  scripts/kickass.sh    reference/{kickassembler,c64-hardware}.md  templates/main.asm
+    c64-ready/  SKILL.md  reference/cli.md
+    c64-asm/    SKILL.md  reference/{kickassembler,c64-hardware}.md  templates/main.asm
+  README.md                          the directory listing text
 assets/brand/                        mascot, font, banner and the script that builds them
 docs/                                planning notes
 ```
@@ -23,26 +24,30 @@ Point Claude Code at your working copy instead of GitHub:
 /plugin install c64@c64-skills
 ```
 
-Smoke-test the scripts:
+The plugin ships no scripts: the plugin directory refuses executable files from
+publishers that aren't Verified, so the skills give the agent the commands inline.
+Smoke-test those commands with the template:
 
 ```bash
-S=plugins/c64/skills
-mkdir -p /tmp/demo/src && cp $S/c64-asm/templates/main.asm /tmp/demo/src/
-(cd /tmp/demo && $OLDPWD/$S/c64-asm/scripts/kickass.sh src/main.asm \
-  && $OLDPWD/$S/c64-ready/scripts/c64-agent.sh build/main.prg --frames 60 \
-     --at 10:joy2=right --at 40:joy2=none --dump 'd000:2')
+mkdir -p /tmp/demo/src && cp plugins/c64/skills/c64-asm/templates/main.asm /tmp/demo/src/
+cd /tmp/demo && mkdir -p build
+java -jar "$KICKASS_JAR" src/main.asm -o "$PWD/build/main.prg" -odir "$PWD/build" -symbolfile -vicesymbols
+npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --frames 60 \
+  --at 10:joy2=right --at 40:joy2=none --dump 'd000:2'
 # expect: d000: be 8c
 ```
 
-Set `C64_READY_DIR=/path/to/c64-ready` to test against an unreleased c64-ready checkout.
+To test against an unreleased c64-ready checkout, run `node /path/to/c64-ready/bin/agent.mjs`
+in place of the `npx` command.
 
 ## Keeping in sync with c64-ready
 
 `plugins/c64/skills/c64-ready/reference/cli.md` is a copy of
 [`docs/AGENT_CLI.md`](https://github.com/hayesmaker/c64-ready/blob/master/docs/AGENT_CLI.md).
-When the CLI changes, copy it across, update the SKILL.md recipes, and raise the
-pinned version in `scripts/c64-agent.sh` (`c64-ready@x.y.z`, exact: the plugin directory rejects ranges) if the skill depends on
-new flags.
+When the CLI changes, copy it across and update the SKILL.md recipes. The skills, the
+template and `plugins/c64/README.md` pin `c64-ready@x.y.z` exactly (the plugin directory
+blocks version ranges in `npx` commands), so raise every pin together:
+`grep -rn 'c64-ready@' plugins`.
 
 ## Releasing
 

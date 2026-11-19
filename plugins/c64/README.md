@@ -35,12 +35,14 @@ your project's `tools/` folder. The plugin never downloads it.
 
 ## What the plugin runs and fetches
 
-- `scripts/kickass.sh` runs `java -jar KickAss.jar` on your source files, locally.
-- `scripts/c64-agent.sh` runs the c64-ready emulator CLI. It uses a copy you already
-  have (`$C64_READY_DIR`, a global install, or `./node_modules`). Otherwise it runs
-  `npx -y -p c64-ready@3.3.0 c64-agent`, which downloads that exact version of the
-  [c64-ready package](https://www.npmjs.com/package/c64-ready) from the npm registry
-  on first use.
+The plugin contains only instructions, reference notes and a starter `.asm` file. It
+ships no scripts or programs. The skills tell Claude to run these commands:
+
+- `java -jar KickAss.jar …` to build your source files, locally.
+- `npx -y -p c64-ready@3.3.0 c64-agent …` to run the program in the c64-ready emulator.
+  On first use this downloads that exact version of the
+  [c64-ready package](https://www.npmjs.com/package/c64-ready) from the npm registry.
+  If your project already has c64-ready installed, Claude uses that copy instead.
 - The suggested `npx c64-ready <file> --open` command starts a local web server on
   `localhost` that serves the browser player and your built file, then opens it in
   your browser.

@@ -138,7 +138,7 @@ These are available by default: `lax`, `sax`, `dcp`, `isc`, `slo`, `rla`, `sre`,
 
 ## Build output
 
-`kickass.sh` passes `-symbolfile -vicesymbols`. Useful extra flags (after `--`):
+The build command in SKILL.md passes `-symbolfile -vicesymbols`. Useful extra flags:
 `-showmem` (memory map), `-debugdump`, `-define DEBUG` (then `#if DEBUG … #endif`),
 `-vicesymbols`, `-bytedump` (assembled bytes per line). Errors look like:
 

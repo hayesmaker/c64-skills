@@ -16,14 +16,22 @@ the report or screenshot, and fix what you find.
 
 ## Running it
 
-Use the wrapper in this skill's directory. It finds a local clone (`$C64_READY_DIR`), a
-global or project install, and falls back to `npx -p c64-ready@3.3.0`:
+`c64-agent` ships in the [c64-ready](https://www.npmjs.com/package/c64-ready) npm
+package. It needs Node.js 24+. Run it with `npx`, pinned to an exact version:
 
 ```bash
-<skill-dir>/scripts/c64-agent.sh build/main.prg --frames 100 --screen --screenshot /tmp/shot.png
+npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --frames 100 --screen --screenshot /tmp/shot.png
 ```
 
-It needs Node.js 24+. `--help` prints every option. The full reference is in
+The first run downloads the package, and later runs start at once. Use a shorter form
+when one is available:
+
+- `./node_modules/.bin/c64-agent`, if the project has c64-ready installed
+- `node "$C64_READY_DIR/bin/agent.mjs"`, if the user has a local clone and set `C64_READY_DIR`
+
+A global `c64-agent` on PATH is fine too, but only if `c64-agent --help` works (it
+appeared in c64-ready 3.2.0). In the recipes below, `c64-agent` stands for whichever
+form you use. `--help` prints every option. The full reference is in
 [reference/cli.md](reference/cli.md).
 
 ## The report
@@ -53,17 +61,17 @@ screen:
 
 **Check that it starts and draws what you expect.** Prefer text over images: it's cheaper and exact.
 ```bash
-c64-agent.sh game.prg --frames 150 --screen
+c64-agent game.prg --frames 150 --screen
 ```
 
 **Check memory (variables, registers, tables).** Dumps read without side effects.
 ```bash
-c64-agent.sh game.prg --frames 200 --symbols build/game.sym --dump score:3 --dump '$d000-$d010' --vic
+c64-agent game.prg --frames 200 --symbols build/game.sym --dump score:3 --dump '$d000-$d010' --vic
 ```
 
 **Drive the program with input.** Frame numbers count from 0 after load.
 ```bash
-c64-agent.sh game.prg --frames 300 \
+c64-agent game.prg --frames 300 \
   --at 50:press=space \
   --at 100:joy2=right+fire --at 160:joy2=none \
   --at 200:screenshot=/tmp/mid.png --screenshot /tmp/end.png
@@ -75,14 +83,14 @@ c64-agent.sh game.prg --frames 300 \
 
 **Stop at a routine.** The run stops before the instruction at that address executes.
 ```bash
-c64-agent.sh game.prg --symbols build/game.sym --break player_died --frames 3000 --dump lives:1
+c64-agent game.prg --symbols build/game.sym --break player_died --frames 3000 --dump lives:1
 ```
 If the breakpoint is never hit, the stop reason is `frames`, which tells you that code
 never ran.
 
 **Write a pass/fail test.** Have the program print a result, then wait for it:
 ```bash
-c64-agent.sh tests.prg --until-text "ALL PASSED" --frames 3000 --screen || echo "FAILED"
+c64-agent tests.prg --until-text "ALL PASSED" --frames 3000 --screen || echo "FAILED"
 ```
 
 **Watch something change over time.**

@@ -40,8 +40,8 @@ KickAssembler is a free download. Unzip it anywhere, then either point at it:
 export KICKASS_JAR=~/KickAssembler/KickAss.jar   # add to your shell profile
 ```
 
-or put `KickAss.jar` in a `tools/` folder inside your project. The build script also
-looks in `~/KickAssembler/` and `/opt/`.
+or put `KickAss.jar` in a `tools/` folder inside your project. The agent also looks
+in `~/KickAssembler/` and `/opt/`.
 
 **3. Ask for something.** You don't need to name the skills:
 
@@ -89,30 +89,30 @@ projects or `.claude/skills/` for a single project.
 
 ## Using the tools yourself
 
-The scripts work fine without an agent. From a clone of this repository:
+The commands the agent runs work fine by hand. From a clone of this repository:
 
 ```bash
-SKILLS=/path/to/c64-skills/plugins/c64/skills
-
 # start a project from the template and build it
-mkdir -p mygame/src && cp $SKILLS/c64-asm/templates/main.asm mygame/src/ && cd mygame
-$SKILLS/c64-asm/scripts/kickass.sh src/main.asm          # → build/main.prg, build/main.sym
+mkdir -p mygame/src mygame/build
+cp plugins/c64/skills/c64-asm/templates/main.asm mygame/src/ && cd mygame
+java -jar "$KICKASS_JAR" src/main.asm \
+  -o "$PWD/build/main.prg" -odir "$PWD/build" -symbolfile -vicesymbols
 
 # run it: push the joystick right for 30 frames, then show the screen and sprite position
-$SKILLS/c64-ready/scripts/c64-agent.sh build/main.prg --symbols build/main.sym \
+npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --symbols build/main.sym \
   --frames 60 --at 10:joy2=right --at 40:joy2=none --screen --dump 'd000:2' --screenshot shot.png
 ```
 
-`c64-agent.sh --help` lists every option, and the full reference is in
+`c64-agent --help` lists every option, and the full reference is in
 [plugins/c64/skills/c64-ready/reference/cli.md](plugins/c64/skills/c64-ready/reference/cli.md).
 To play the program yourself, run `npx c64-ready build/main.prg --open`. The browser
 player opens with it running, and reloading the page picks up a new build.
 
 ## Troubleshooting
 
-- **"KickAss.jar not found":** set `KICKASS_JAR` to the full path of `KickAss.jar`, or put
+- **The agent can't find KickAssembler:** set `KICKASS_JAR` to the full path of `KickAss.jar`, or put
   it in your project's `tools/` folder.
-- **"Node … is too old":** c64-ready needs Node.js 24 or newer.
+- **c64-ready fails to start:** check `node -v`. c64-ready needs Node.js 24 or newer.
 - **The first run is slow:** `npx` is downloading c64-ready. Later runs start
   immediately. For an always-installed copy, run `npm install -g c64-ready`.
 - **`npx c64-ready build/main.prg` opens a different game:** an old copy of c64-ready is

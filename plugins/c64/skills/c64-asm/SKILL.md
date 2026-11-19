@@ -9,11 +9,11 @@ Every change goes through the same loop:
 
 1. **Edit** the `.asm` source. KickAssembler syntax only: see
    [reference/kickassembler.md](reference/kickassembler.md).
-2. **Build** with `<skill-dir>/scripts/kickass.sh src/main.asm`. This writes
-   `build/main.prg`, `build/main.sym` and `build/main.vs`. The script exits non-zero
-   and prints the error with its line and column.
+2. **Build** it (see [Building](#building) below). This writes `build/main.prg`,
+   `build/main.sym` and `build/main.vs`. A failed build exits 1 and prints the error
+   with its line and column.
 3. **Run and check** it with the **c64-ready** skill:
-   `c64-agent.sh build/main.prg --symbols build/main.sym --frames 100 --screen --screenshot /tmp/shot.png`
+   `npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --symbols build/main.sym --frames 100 --screen --screenshot /tmp/shot.png`
 4. Compare what happened with what you intended (the screen text, memory dumps, a
    screenshot, or a breakpoint being hit), then go back to step 1.
 5. **Hand it over.** Tell the user what you checked, and how to play it in the
@@ -24,15 +24,37 @@ Every change goes through the same loop:
 Never report C64 code as done until it has been built and run. A program that
 assembles can still crash, draw nothing, or read the wrong joystick port.
 
-## Setup
+## Building
 
-- **Java 8+** (`java -version`).
-- **KickAss.jar**: KickAssembler is free from https://theweb.dk/KickAssembler/. The
-  build script looks in `$KICKASS_JAR`, `./tools/`, `~/KickAssembler/`, `/opt/` and
-  similar places. If it isn't found, ask the user where it is, or tell them to download
-  it and set `KICKASS_JAR`. Don't download it silently.
-- Extra assembler flags go after `--`, for example
-  `kickass.sh src/main.asm build -- -showmem -define DEBUG`.
+You need **Java 8+** (`java -version`) and **KickAss.jar**. Find the jar once per
+session by checking these in order, and use the first that exists:
+
+1. `$KICKASS_JAR`
+2. `./tools/KickAss.jar`, `./tools/bin/KickAss.jar`, `./KickAss.jar`
+3. `~/KickAssembler/KickAss.jar`
+4. `/opt/KickAss.jar`, `/opt/KickAssembler/KickAss.jar`, `/usr/local/share/KickAssembler/KickAss.jar`
+5. `/Applications/KickAssembler/KickAss.jar` (macOS)
+
+If none exists, ask the user where it is, or tell them to download KickAssembler (free,
+https://theweb.dk/KickAssembler/) and set `KICKASS_JAR`. Don't download it yourself.
+
+Then build from the project root:
+
+```bash
+mkdir -p build
+java -jar "$KICKASS_JAR" src/main.asm \
+  -o "$PWD/build/main.prg" -odir "$PWD/build" -symbolfile -vicesymbols
+```
+
+- Always pass **absolute** paths to `-o` and `-odir`. KickAssembler resolves `-o`
+  against the current directory but `-odir` against the source file, so relative paths
+  scatter the output.
+- `-symbolfile` writes `build/main.sym`, which c64-agent's `--symbols` reads.
+  `-vicesymbols` writes `build/main.vs` for VICE.
+- A failed build exits 1. The error is at the end of the output, as
+  `Error: …` followed by `at line N, column M in file.asm`. The lines before it
+  (`parsing`, `flex pass`, `Output pass`) are progress messages.
+- Add extra flags at the end, for example `-showmem -define DEBUG`.
 
 ## Starting a new project
 
@@ -49,8 +71,8 @@ build/              generated: .prg .sym .vs (add to .gitignore)
 
 To check that the template works with joystick input:
 ```bash
-kickass.sh src/main.asm
-c64-agent.sh build/main.prg --frames 60 --at 10:joy2=right --at 40:joy2=none --dump 'd000:2'
+# build as in "Building" above, then:
+npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --frames 60 --at 10:joy2=right --at 40:joy2=none --dump 'd000:2'
 # d000: be 8c   → sprite X moved from 160 to 190 (30 frames of "right")
 ```
 
@@ -64,7 +86,7 @@ c64-agent.sh build/main.prg --frames 60 --at 10:joy2=right --at 40:joy2=none --d
   `spawn_bullet`.
 - **Self-checking tests:** for logic such as maths, collision or score BCD, write a
   small test `.prg` that runs the routine on known inputs and prints `PASS`/`FAIL` to the
-  screen, then run `c64-agent.sh tests.prg --until-text PASS --frames 500`. Exit code 3
+  screen, then run `c64-agent tests.prg --until-text PASS --frames 500`. Exit code 3
   means it never passed.
 - **Guard your memory layout** with `.errorif (* > $9fff), "code too big"` and check
   alignment with `.assert`. KickAssembler then reports the problem at build time.
