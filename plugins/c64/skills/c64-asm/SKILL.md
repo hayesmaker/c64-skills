@@ -58,7 +58,7 @@ java -jar "$KICKASS_JAR" src/main.asm \
 
 ## Starting a new project
 
-Copy [templates/main.asm](templates/main.asm) to `src/main.asm`. It's a small tested
+Write the code block in [templates/main-asm.md](templates/main-asm.md) to `src/main.asm`. It's a small tested
 starting point: a BASIC stub, a raster IRQ that sets a once-per-frame flag, a main loop
 locked to that flag, and a joystick-driven sprite. A suggested layout:
 

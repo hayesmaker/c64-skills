@@ -1,3 +1,12 @@
+# Starter project: src/main.asm
+
+A tested KickAssembler starting point: a BASIC stub, a raster IRQ that sets a
+once-per-frame flag, a main loop locked to that flag, and a joystick-driven sprite.
+
+To use it, write the code block below to `src/main.asm` exactly as it is (everything
+between the fences, nothing else), then build it as described in SKILL.md.
+
+```asm
 // ─────────────────────────────────────────────────────────────────────────────
 // main.asm — KickAssembler starter: raster IRQ, frame-locked game loop,
 // joystick-driven sprite. Build and run:
@@ -142,3 +151,4 @@ ship:
         .byte %11000000, %00000000, %00000011
         .byte %10000000, %00000000, %00000001
         .byte %00000000, %00000000, %00000000
+```

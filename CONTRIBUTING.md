@@ -9,7 +9,7 @@ plugins/c64/
   .claude-plugin/icon.png            plugin directory icon (generated, see Brand)
   skills/
     c64-ready/  SKILL.md  reference/cli.md
-    c64-asm/    SKILL.md  reference/{kickassembler,c64-hardware}.md  templates/main.asm
+    c64-asm/    SKILL.md  reference/{kickassembler,c64-hardware}.md  templates/main-asm.md
   README.md                          the directory listing text
 assets/brand/                        mascot, font, banner and the script that builds them
 docs/                                planning notes
@@ -29,7 +29,7 @@ publishers that aren't Verified, so the skills give the agent the commands inlin
 Smoke-test those commands with the template:
 
 ```bash
-mkdir -p /tmp/demo/src && cp plugins/c64/skills/c64-asm/templates/main.asm /tmp/demo/src/
+mkdir -p /tmp/demo/src && awk '/^```asm$/{f=1;next} /^```$/{f=0} f' plugins/c64/skills/c64-asm/templates/main-asm.md > /tmp/demo/src/main.asm
 cd /tmp/demo && mkdir -p build
 java -jar "$KICKASS_JAR" src/main.asm -o "$PWD/build/main.prg" -odir "$PWD/build" -symbolfile -vicesymbols
 npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --frames 60 \

@@ -35,7 +35,7 @@ your project's `tools/` folder. The plugin never downloads it.
 
 ## What the plugin runs and fetches
 
-The plugin contains only instructions, reference notes and a starter `.asm` file. It
+The plugin contains only instructions, reference notes and a starter assembly project (as Markdown). It
 ships no scripts or programs. The skills tell Claude to run these commands:
 
 - `java -jar KickAss.jar …` to build your source files, locally.

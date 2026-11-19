@@ -94,7 +94,8 @@ The commands the agent runs work fine by hand. From a clone of this repository:
 ```bash
 # start a project from the template and build it
 mkdir -p mygame/src mygame/build
-cp plugins/c64/skills/c64-asm/templates/main.asm mygame/src/ && cd mygame
+awk '/^```asm$/{f=1;next} /^```$/{f=0} f' plugins/c64/skills/c64-asm/templates/main-asm.md > mygame/src/main.asm
+cd mygame
 java -jar "$KICKASS_JAR" src/main.asm \
   -o "$PWD/build/main.prg" -odir "$PWD/build" -symbolfile -vicesymbols
 
