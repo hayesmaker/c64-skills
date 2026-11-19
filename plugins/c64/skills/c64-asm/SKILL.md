@@ -16,6 +16,10 @@ Every change goes through the same loop:
    `c64-agent.sh build/main.prg --symbols build/main.sym --frames 100 --screen --screenshot /tmp/shot.png`
 4. Compare what happened with what you intended (the screen text, memory dumps, a
    screenshot, or a breakpoint being hit), then go back to step 1.
+5. **Hand it over.** Tell the user what you checked, and how to play it in the
+   c64-ready browser player: `npx c64-ready build/main.prg --open`. See
+   "Handing the program to the user" in the c64-ready skill. Offer VICE only as an
+   alternative.
 
 Never report C64 code as done until it has been built and run. A program that
 assembles can still crash, draw nothing, or read the wrong joystick port.

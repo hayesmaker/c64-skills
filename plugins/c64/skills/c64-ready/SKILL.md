@@ -90,11 +90,35 @@ c64-agent.sh tests.prg --until-text "ALL PASSED" --frames 3000 --screen || echo 
 different `--frames` values are often clearer than many images.
 
 **Show the user.** `--video /tmp/run.mp4` (or `.gif`) records the run, which needs
-`ffmpeg`. For hands-on play, `npx c64-ready` serves the browser player, and files can be
-dragged onto it.
+`ffmpeg`. For hands-on play, `npx c64-ready <file> --open` opens the browser player
+with the program running (see the next section).
 
 **Resume from a known state.** `--save-snapshot /tmp/level2.c64` saves the state.
 Later runs can load `/tmp/level2.c64` directly instead of replaying input to get there.
+
+## Handing the program to the user
+
+When you finish, tell the user how to run the program **with c64-ready**, the
+emulator you tested it with. Put this in your final message:
+
+```
+To play it:  npx c64-ready build/main.prg --open
+```
+
+That opens the browser player with the program already running. The server keeps
+running, and reloading the page picks up a rebuilt file, so the user can leave it open
+while you keep iterating. Without `--open`, it prints a URL for the user to open instead.
+
+- Tell the user the controls. In the browser player, the **arrow keys** move the joystick,
+  **Z** or **left Ctrl** fires, and a USB or Bluetooth gamepad also works. Other keys type
+  on the C64 keyboard. It loads `.d64`, `.crt` and `.c64` snapshots the same way.
+- Name the exact file you built, using its real path.
+- If you saved a screenshot or video during testing, mention it too, so the user can see
+  the result without running anything.
+- Mention VICE (`x64sc build/main.prg` autostarts it) or real hardware only as
+  alternatives, after c64-ready.
+- Don't tell the user to type `LOAD"MAIN.PRG",8,1` for a `.prg` on their computer. That
+  command loads from a disk in drive 8, not from a file on the host.
 
 ## Loading rules
 
