@@ -1,5 +1,7 @@
 # c64-skills
 
+![c64-skills: cbm-buddy, the c64-skills mascot](assets/brand/banner.png)
+
 Agent skills for **AI-assisted Commodore 64 development**. They give a coding agent
 (Claude Code, or any tool that reads `SKILL.md` Agent Skills) a closed loop: write 6502
 assembly, build it with KickAssembler, run it in the
@@ -76,6 +78,12 @@ in c64-ready. Update it when the CLI changes.
 More skills to come: graphics (charsets, sprites and bitmaps with
 [c64-pad](https://github.com/hayesmaker/c64-pad)), SID music, and
 [c64-cheevos](https://github.com/hayesmaker/c64-cheevos) achievement detectors.
+
+## Brand
+
+The mascot is **cbm-buddy**. `assets/brand/make_brand.py` regenerates the plugin icon
+(`plugins/c64/.claude-plugin/icon.png`, 1024×1024) and the banner from `assets/brand/cbm-buddy.png`.
+The font is the freeware *Commodore 64* TrueType font by Devin Cook.
 
 ## License
 
