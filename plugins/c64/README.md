@@ -4,16 +4,16 @@
 
 **Your AI coding agent writes Commodore 64 assembly, runs it frame by frame to prove it works, then hands you a build you can play in the browser.**
 
-This plugin teaches Claude to write 6502 assembly, build it with KickAssembler, and run
-the result in the [c64-ready](https://github.com/hayesmaker/c64-ready) headless
-emulator. The agent then reads back what happened (the screen text, memory, CPU
-registers and PNG screenshots) and fixes the code itself, instead of handing you
-something that "should work". When it's done, it gives you one command that opens the
-program in the c64-ready browser player so you can play it.
+This plugin gives Claude the whole loop: write 6502 assembly, build it with
+KickAssembler, run it in the [c64-ready](https://github.com/hayesmaker/c64-ready)
+headless emulator, read back what happened (the screen text, memory, CPU registers and
+PNG screenshots), and fix the code until it works. You get a tested program, not
+something that "should work", plus one command that opens it in the c64-ready browser
+player so you can play it.
 
 ## Why this plugin
 
-Plenty of skill packs teach an AI how to *write* 6502. This one is about **proving the
+Most C64 skill packs stop once the code is written. This one goes on to **prove the
 program works**, using the [c64-ready](https://github.com/hayesmaker/c64-ready) emulator
 and its agent CLI:
 

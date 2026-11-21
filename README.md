@@ -4,15 +4,15 @@
 
 **Your AI coding agent writes Commodore 64 assembly, runs it frame by frame to prove it works, then hands you a build you can play in the browser.**
 
-c64-skills teaches Claude Code (or any agent that reads `SKILL.md` Agent Skills) to
-write 6502 assembly, build it with KickAssembler, and run the result in the
-[c64-ready](https://github.com/hayesmaker/c64-ready) headless emulator. The agent then
-checks what happened (the screen, memory, registers and screenshots) and fixes the code
-itself, instead of handing you something that "should work".
+c64-skills gives Claude Code (or any agent that reads `SKILL.md` Agent Skills) the whole
+loop: write 6502 assembly, build it with KickAssembler, run it in the
+[c64-ready](https://github.com/hayesmaker/c64-ready) headless emulator, check what
+happened (the screen, memory, registers and screenshots), and fix the code until it
+works. You get a tested program, not something that "should work".
 
 ## Why c64-skills
 
-Plenty of skill packs teach an AI how to *write* 6502. This one is about **proving the
+Most C64 skill packs stop once the code is written. This one goes on to **prove the
 program works**, using the [c64-ready](https://github.com/hayesmaker/c64-ready) emulator
 and its agent CLI:
 
