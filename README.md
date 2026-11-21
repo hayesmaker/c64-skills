@@ -4,11 +4,12 @@
 
 **Your AI coding agent writes Commodore 64 assembly, runs it frame by frame to prove it works, then hands you a build you can play in the browser.**
 
-c64-skills gives Claude Code (or any agent that reads `SKILL.md` Agent Skills) the whole
-loop: write 6502 assembly, build it with KickAssembler, run it in the
-[c64-ready](https://github.com/hayesmaker/c64-ready) headless emulator, check what
-happened (the screen, memory, registers and screenshots), and fix the code until it
-works. You get a tested program, not something that "should work".
+c64-skills gives your AI coding agent the whole loop: write 6502 assembly, build it
+with KickAssembler, run it in the [c64-ready](https://github.com/hayesmaker/c64-ready)
+headless emulator, check what happened (the screen, memory, registers and
+screenshots), and fix the code until it works. You get a tested program, not
+something that "should work". The skills are standard `SKILL.md` Agent Skills, so they
+work with Claude Code and any other tool that reads that format.
 
 ## Why c64-skills
 
@@ -30,17 +31,24 @@ and its agent CLI:
 - **KickAssembler throughout,** with a syntax guide aimed at the mistakes AI models
   actually make in it.
 
-## Quick start (Claude Code)
+## Quick start
 
-**1. Add the c64-skills marketplace, then install the plugin:**
+**1. Install the skills in your agent.** Pick whichever fits:
 
-```
-/plugin marketplace add hayesmaker/c64-skills
-/plugin install c64-skills@c64-skills
-```
+- **Any agent that reads `SKILL.md` skills:** the skills are plain folders. Clone this
+  repository and copy (or symlink) `plugins/c64/skills/c64-ready` and
+  `plugins/c64/skills/c64-asm` into the skills directory your agent reads. Check your
+  tool's documentation for where that is.
+- **Claude Code, as a plugin:** add this repository as a marketplace, then install the
+  plugin. If the skills don't show up straight away, restart Claude Code.
 
-The first line registers this repository as a plugin source, and the second installs
-its `c64-skills` plugin. If the skills don't show up straight away, restart Claude Code.
+  ```
+  /plugin marketplace add hayesmaker/c64-skills
+  /plugin install c64-skills@c64-skills
+  ```
+
+  To copy the folders instead (the first option), use `~/.claude/skills/` for all
+  projects or `.claude/skills/` for a single project.
 
 **2. Install the tools the skills use:**
 
@@ -94,6 +102,11 @@ usually show you screenshots.
 
 ## Updating and removing
 
+If you copied the skill folders, run `git pull` in your clone and copy them again
+(symlinks update by themselves). Delete the two folders to remove them.
+
+For the Claude Code plugin:
+
 ```
 /plugin marketplace update c64-skills    # fetch the latest version of the listing
 /plugin update c64-skills@c64-skills    # update the installed plugin
@@ -102,13 +115,6 @@ usually show you screenshots.
 
 If you installed an early version under its old name, `c64`, run
 `/plugin uninstall c64@c64-skills` and then install `c64-skills@c64-skills`.
-
-## Other agents, or without the plugin system
-
-The skills are plain folders. Clone this repository and copy (or symlink)
-`plugins/c64/skills/c64-ready` and `plugins/c64/skills/c64-asm` into the skills
-directory your agent reads. For Claude Code, that's `~/.claude/skills/` for all
-projects or `.claude/skills/` for a single project.
 
 ## Using the tools yourself
 

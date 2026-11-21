@@ -4,7 +4,7 @@
 
 **Your AI coding agent writes Commodore 64 assembly, runs it frame by frame to prove it works, then hands you a build you can play in the browser.**
 
-This plugin gives Claude the whole loop: write 6502 assembly, build it with
+This plugin gives your AI coding agent the whole loop: write 6502 assembly, build it with
 KickAssembler, run it in the [c64-ready](https://github.com/hayesmaker/c64-ready)
 headless emulator, read back what happened (the screen text, memory, CPU registers and
 PNG screenshots), and fix the code until it works. You get a tested program, not
