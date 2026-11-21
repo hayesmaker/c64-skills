@@ -1,7 +1,7 @@
 {
   "name": "c64-skills",
   "version": "0.1.5",
-  "description": "Commodore 64 development skills: run, screenshot and debug programs headlessly with c64-ready, and build 6502 assembly with KickAssembler.",
+  "description": "Claude writes C64 assembly with KickAssembler and proves it works in the c64-ready emulator: frame-exact repeatable runs, scripted joystick and keyboard input, breakpoints by label and screenshots, with nothing to install beyond Node and Java. Then it hands you a build you can play in your browser.",
   "author": {
     "name": "hayesmaker",
     "url": "https://github.com/hayesmaker"
@@ -9,5 +9,18 @@
   "homepage": "https://github.com/hayesmaker/c64-skills",
   "repository": "https://github.com/hayesmaker/c64-skills",
   "license": "MIT",
-  "keywords": ["c64", "commodore-64", "6502", "assembly", "kickassembler", "emulator", "retro", "gamedev"]
+  "keywords": [
+    "c64",
+    "commodore-64",
+    "6502",
+    "assembly",
+    "kickassembler",
+    "c64-ready",
+    "emulator",
+    "testing",
+    "debugging",
+    "screenshots",
+    "retro",
+    "gamedev"
+  ]
 }

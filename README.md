@@ -2,13 +2,33 @@
 
 ![c64-skills: cbm-buddy, the c64-skills mascot](assets/brand/banner.png)
 
-**Let your AI coding agent write Commodore 64 programs and check that they actually work.**
+**Your AI coding agent writes Commodore 64 assembly, runs it frame by frame to prove it works, then hands you a build you can play in the browser.**
 
-c64-skills teaches Claude Code (or any agent that reads `SKILL.md` Agent Skills) to:
+c64-skills teaches Claude Code (or any agent that reads `SKILL.md` Agent Skills) to
 write 6502 assembly, build it with KickAssembler, and run the result in the
 [c64-ready](https://github.com/hayesmaker/c64-ready) headless emulator. The agent then
 checks what happened (the screen, memory, registers and screenshots) and fixes the code
 itself, instead of handing you something that "should work".
+
+## Why c64-skills
+
+Plenty of skill packs teach an AI how to *write* 6502. This one is about **proving the
+program works**, using the [c64-ready](https://github.com/hayesmaker/c64-ready) emulator
+and its agent CLI:
+
+- **Nothing to install for the emulator.** No VICE, no emulator config. `npx` fetches
+  c64-ready on first use, and it runs anywhere Node.js does.
+- **Frame-exact, repeatable runs.** The agent says "run 300 frames, push the joystick
+  right at frame 50, take a screenshot at frame 200", and gets the same result every
+  time. A minute of C64 time runs in a few seconds.
+- **Tests that read like intentions.** Stop at a label from your KickAssembler symbols,
+  wait for text to appear, dump `score:3` by name, or fail the run if `ALL PASSED`
+  never shows up.
+- **A build you can play straight away.** When the agent is done, it gives you one
+  command, `npx c64-ready build/main.prg --open`, which opens the program running in
+  your browser with keyboard and gamepad controls.
+- **KickAssembler throughout,** with a syntax guide aimed at the mistakes AI models
+  actually make in it.
 
 ## Quick start (Claude Code)
 
