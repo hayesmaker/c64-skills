@@ -11,7 +11,7 @@ between the fences, nothing else), then build it as described in SKILL.md.
 // main.asm — KickAssembler starter: raster IRQ, frame-locked game loop,
 // joystick-driven sprite. Build and run:
 //   java -jar "$KICKASS_JAR" src/main.asm -o "$PWD/build/main.prg" -odir "$PWD/build" -symbolfile -vicesymbols
-//   npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --symbols build/main.sym --frames 100 --screenshot shot.png
+//   npx -y -p c64-ready@3.3.1 c64-agent build/main.prg --symbols build/main.sym --frames 100 --screenshot shot.png
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── constants ────────────────────────────────────────────────────────────────

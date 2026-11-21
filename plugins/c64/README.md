@@ -39,7 +39,7 @@ The plugin contains only instructions, reference notes and a starter assembly pr
 ships no scripts or programs. The skills tell Claude to run these commands:
 
 - `java -jar KickAss.jar …` to build your source files, locally.
-- `npx -y -p c64-ready@3.3.0 c64-agent …` to run the program in the c64-ready emulator.
+- `npx -y -p c64-ready@3.3.1 c64-agent …` to run the program in the c64-ready emulator.
   On first use this downloads that exact version of the
   [c64-ready package](https://www.npmjs.com/package/c64-ready) from the npm registry.
   If your project already has c64-ready installed, Claude uses that copy instead.

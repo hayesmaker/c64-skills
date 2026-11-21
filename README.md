@@ -103,7 +103,7 @@ java -jar "$KICKASS_JAR" src/main.asm \
   -o "$PWD/build/main.prg" -odir "$PWD/build" -symbolfile -vicesymbols
 
 # run it: push the joystick right for 30 frames, then show the screen and sprite position
-npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --symbols build/main.sym \
+npx -y -p c64-ready@3.3.1 c64-agent build/main.prg --symbols build/main.sym \
   --frames 60 --at 10:joy2=right --at 40:joy2=none --screen --dump 'd000:2' --screenshot shot.png
 ```
 
@@ -122,8 +122,10 @@ player opens with it running, and reloading the page picks up a new build.
 - **`npx c64-ready build/main.prg` opens a different game:** an old copy of c64-ready is
   installed globally and `npx` is running it. Update it with `npm install -g c64-ready@latest`,
   or remove it with `npm uninstall -g c64-ready`.
-- **A small `lvllvl` label in the middle of screenshots:** that's the emulator core's
-  watermark, not a bug in your program.
+- **A small grey `lvllvl` mark in the middle of screenshots:** that's the emulator
+  core's start-up watermark, not a bug in your program. c64-ready 3.3.1 and later keep
+  it out of screenshots, so you'll only see it with an older global install. Update it
+  with `npm install -g c64-ready@latest`.
 - **Disk images (`.d64`) take a while to start:** the 1541 drive is emulated accurately,
   speed included. The agent knows to wait.
 

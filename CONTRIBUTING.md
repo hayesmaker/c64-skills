@@ -32,7 +32,7 @@ Smoke-test those commands with the template:
 mkdir -p /tmp/demo/src && awk '/^```asm$/{f=1;next} /^```$/{f=0} f' plugins/c64/skills/c64-asm/templates/main-asm.md > /tmp/demo/src/main.asm
 cd /tmp/demo && mkdir -p build
 java -jar "$KICKASS_JAR" src/main.asm -o "$PWD/build/main.prg" -odir "$PWD/build" -symbolfile -vicesymbols
-npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --frames 60 \
+npx -y -p c64-ready@3.3.1 c64-agent build/main.prg --frames 60 \
   --at 10:joy2=right --at 40:joy2=none --dump 'd000:2'
 # expect: d000: be 8c
 ```

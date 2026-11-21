@@ -13,11 +13,9 @@ Every change goes through the same loop:
    `build/main.sym` and `build/main.vs`. A failed build exits 1 and prints the error
    with its line and column.
 3. **Run and check** it with the **c64-ready** skill:
-   `npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --symbols build/main.sym --frames 100 --screen --screenshot /tmp/shot.png`
+   `npx -y -p c64-ready@3.3.1 c64-agent build/main.prg --symbols build/main.sym --frames 100 --screen --screenshot /tmp/shot.png`
 4. Compare what happened with what you intended (the screen text, memory dumps, a
-   screenshot, or a breakpoint being hit), then go back to step 1. The small grey mark
-   at the centre of every c64-agent screenshot is the emulator's `lvllvl` watermark.
-   Ignore it.
+   screenshot, or a breakpoint being hit), then go back to step 1.
 5. **Hand it over.** Tell the user what you checked, and how to play it in the
    c64-ready browser player: `npx c64-ready build/main.prg --open`. See
    "Handing the program to the user" in the c64-ready skill. Offer VICE only as an
@@ -74,7 +72,7 @@ build/              generated: .prg .sym .vs (add to .gitignore)
 To check that the template works with joystick input:
 ```bash
 # build as in "Building" above, then:
-npx -y -p c64-ready@3.3.0 c64-agent build/main.prg --frames 60 --at 10:joy2=right --at 40:joy2=none --dump 'd000:2'
+npx -y -p c64-ready@3.3.1 c64-agent build/main.prg --frames 60 --at 10:joy2=right --at 40:joy2=none --dump 'd000:2'
 # d000: be 8c   → sprite X moved from 160 to 190 (30 frames of "right")
 ```
 
