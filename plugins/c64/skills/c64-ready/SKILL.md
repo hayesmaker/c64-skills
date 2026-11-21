@@ -57,13 +57,15 @@ screen:
 - To look at a screenshot, read the PNG file (for example with the Read tool). Use
   `--scale 2` if detail matters.
 
-> **Every screenshot has a watermark at the centre. Ignore it.** The emulator core
-> draws the word `lvllvl` in small grey letters just right of the centre of the
-> screen, on top of whatever your program shows, in every frame. At the default scale
-> it is only a few pixels and looks like a small grey smudge, dot or mark. It is not
-> in screen RAM, your program didn't draw it, and the browser player shows it too.
-> Don't investigate it, try to remove it, or report it to the user as an oddity. Only
-> treat a mark there as a bug if it is something other than that small grey smudge.
+> **Every c64-agent screenshot has a watermark at the centre. Ignore it.** The
+> emulator core draws the word `lvllvl` in small grey letters just right of the
+> centre of the screen, on top of whatever your program shows. In c64-agent runs it is
+> there in every frame, however long the run. At the default scale it is only a few
+> pixels and looks like a small grey smudge, dot or mark. It is not in screen RAM and
+> your program didn't draw it. In the browser player it shows for only a second or
+> two after start-up, so the user won't see it while playing. Don't investigate it,
+> try to remove it, or report it to the user as an oddity. Only treat a mark there as
+> a bug if it is something other than that small grey smudge.
 
 ## Recipes
 
