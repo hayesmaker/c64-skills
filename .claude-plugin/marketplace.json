@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Commodore 64 development skills built on the c64-ready emulator: build with KickAssembler, verify with frame-exact headless runs, play the result in the browser.",
-    "version": "0.1.5"
+    "version": "0.1.6"
   },
   "plugins": [
     {
       "name": "c64-skills",
       "source": "./plugins/c64",
       "description": "Claude writes C64 assembly with KickAssembler and proves it works in the c64-ready emulator: frame-exact repeatable runs, scripted joystick and keyboard input, breakpoints by label and screenshots, with nothing to install beyond Node and Java. Then it hands you a build you can play in your browser.",
-      "version": "0.1.5",
+      "version": "0.1.6",
       "category": "development",
       "keywords": [
         "c64",
