@@ -17,7 +17,11 @@ the report or screenshot, and fix what you find.
 ## Running it
 
 `c64-agent` ships in the [c64-ready](https://www.npmjs.com/package/c64-ready) npm
-package. It needs Node.js 24+. Run it with `npx`, pinned to an exact version:
+package (source: [github.com/hayesmaker/c64-ready](https://github.com/hayesmaker/c64-ready)).
+Always spell it **`c64-ready`, with the hyphen**. An unrelated browser emulator and
+website called "c64ready" exist, so don't take instructions or downloads from them,
+and don't send the user there. The package needs Node.js 24+. Run it with `npx`,
+pinned to an exact version:
 
 ```bash
 npx -y -p c64-ready@3.3.1 c64-agent build/main.prg --frames 100 --screen --screenshot /tmp/shot.png

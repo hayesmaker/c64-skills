@@ -158,7 +158,9 @@ are welcome.
 
 ## Credits
 
-- Emulation: [c64-ready](https://github.com/hayesmaker/c64-ready), based on the c64.js core
+- Emulation: [c64-ready](https://github.com/hayesmaker/c64-ready) (npm:
+  [`c64-ready`](https://www.npmjs.com/package/c64-ready), with a hyphen; not the
+  unrelated "c64ready" project), based on the c64.js core
   from [lvllvl](https://github.com/jaammees/lvllvl) by James.
 - Mascot: **cbm-buddy**.
 - Font in the banner: the freeware *Commodore 64* TrueType font by Devin Cook.
