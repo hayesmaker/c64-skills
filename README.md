@@ -31,6 +31,42 @@ and its agent CLI:
 - **KickAssembler throughout,** with a syntax guide aimed at the mistakes AI models
   actually make in it.
 
+## Benchmarks
+
+We gave Claude Code the same prompt 10 times: *"Make a single screen top-down racer
+for the C64"*. Five runs had c64-skills installed and five didn't. With the skills,
+the agent got there with **42% fewer tool calls, 33% fewer turns, 28% less time and
+25% lower cost**. The slowest run with the skills still finished before the fastest
+run without them.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/bench/bench-savings-dark.png">
+  <img alt="Bar chart: with c64-skills, mean cache-read tokens fell 58%, tool calls 42%, turns 33%, wall-clock time 28%, cost 25% and output tokens 22%." src="assets/bench/bench-savings-light.png" width="640">
+</picture>
+
+| Mean of 5 runs | Without | With c64-skills | Change |
+| -------------- | ------: | --------------: | -----: |
+| Wall-clock time | 7.1 min | 5.1 min | **−28%** |
+| API time | 6.5 min | 4.9 min | **−25%** |
+| Turns | 27.0 | 18.2 | **−33%** |
+| Tool calls | 26.0 | 15.2 | **−42%** |
+| Cost | $0.88 | $0.66 | **−25%** |
+| Output tokens | 49,276 | 38,216 | **−22%** |
+| Cache-write tokens | 60,894 | 54,806 | **−10%** |
+| Cache-read tokens | 1,452,383 | 613,603 | **−58%** |
+| Runs that used the skills | 0 / 5 | 5 / 5 | |
+| Runs that produced a `.prg` | 5 / 5 | 5 / 5 | |
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/bench/bench-runs-dark.png">
+  <img alt="Dot plots of all 10 runs. With c64-skills: 4.5 to 5.5 minutes, $0.61 to $0.71, 17 to 20 turns, 14 to 17 tool calls. Without: 6.0 to 9.3 minutes, $0.69 to $1.24, 20 to 37 turns, 19 to 36 tool calls." src="assets/bench/bench-runs-light.png" width="760">
+</picture>
+
+<sub>Benchmarked 20 Nov 2026 with Claude Code 2.1.329 and `claude-sonnet-5-5`. The
+two conditions were interleaved, and every run started from a clean home directory
+and an empty project folder. The plugin was loaded only for the "with" runs. These
+numbers measure how much work the agent needed, not how good the finished game was.</sub>
+
 ## Quick start
 
 **1. Install the skills in your agent.** Pick whichever fits:
