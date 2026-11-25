@@ -42,6 +42,14 @@ and its agent CLI:
   joystick-controlled sprite), a KickAssembler syntax guide, and a C64 hardware
   reference covering VIC-II, sprites, SID, CIA and KERNAL.
 
+## Install
+
+In Claude Code 2.1.275 or later:
+
+```
+/plugin install c64-skills --marketplace hayesmaker/c64-skills
+```
+
 ## Requirements
 
 | Tool | Needed for |
